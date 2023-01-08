@@ -1,0 +1,2 @@
+compile:
+	g++ Asteroid.cpp Bullet.cpp CollisionManager.cpp Game.cpp main.cpp NetworkManager.cpp Player.cpp Picture.cpp Menu.cpp SoundMixer.cpp -o game -lm -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lpthread

@@ -56,7 +56,8 @@ Prima di poter giocare occorre seguire i seguenti passaggi (N.B. per via delle l
 
 - Installare le librerie di SDL: 
 > MacOS, aprire il terminale e lanciare i seguenti comandi:
->> - ```brew install SDL2``` (libreria per gestire la grafica)
+>> - ```she brew install SDL2```
+(libreria per gestire la grafica)
 >> - ```brew install SDL2_image``` (libreria per gestire le immagini)
 >> - ```brew install SDL2_ttf``` (libreria per gestire i font)
 >> - ```brew install SDL2_mixer``` (libreria per gestire l’audio)

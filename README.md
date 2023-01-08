@@ -1,4 +1,4 @@
-# COSMOS WAR
+![Cosmos War logo](resources/img/cosmos-war.png)
 
 ###### Illarietti Marco, Pietro Tarenzi - A.S. 2022/2023 I.I.S. Badoni 5BI
 

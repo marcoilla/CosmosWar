@@ -24,7 +24,7 @@ L’utilizzo di questo tipo di socket è motivato dal fatto che volevamo garanti
 ### COME SI GIOCA
 Dopo aver avviato il gioco, premere Il tasto PLAY che ti rimanderà ad una schermata dove bisognerà scegliere se hostare
 la partita o accedere ad essa. Una volta scelto in che modo accedere alla partita bisogna inserire l’indirizzo IP dell’host,
-ci si ritroverà in una schermata in cui si attenderà che la connessione tra server e client sia stabilità. Dopo aver seguito questi passi,
+ci si ritroverà in una schermata in cui si attenderà che la connessione tra server e client sia stabilita. Dopo aver seguito questi passi,
 ci si ritroverà sul campo di combattimento. Per muoversi occorrerà utilizzare W (per andare avanti), A (per andare a sinistra),
 D (per andare a destra) e S (per andare indietro). Per scegliere la direzione in cui verrà orientata la navicella bisogna spostare 
 il cursore all’interno della finestra. Per sparare bisogna mirare con il cursore a forma di mirino il nemico e fare fuoco con il tasto sinistro del mouse.

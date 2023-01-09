@@ -18,7 +18,7 @@ allo sviluppo di videogiochi e per avere più dimestichezza con le socket, utili
 - SDL2 [(Simple DirectMedia Layer)](https://www.libsdl.org/), ovvero una libreria multipiattaforma che permette l’accesso a basso livello all’audio,
 alle periferiche e all’hardware grafico tramite OpenGL. 
 - Socket UDP, implementandole utilizzato la libreria NetInet e la libreria Arpa.
-L’utilizzo di questo tipo di socket è motivato dal fatto che volevamo garantire la minima latenza possibile tra i due giocatori durante il gioco.
+L’utilizzo di questo tipo di socket è motivato dal fatto che volevamo garantire la minima latenza possibile tra i due giocat ori durante il gioco.
 - [Pixel Art Maker](https://www.pixilart.com/), un sito online gratuito per realizzare Pixel Art che abbiamo usato per creare le immagini di gioco (navicella o asteroidi) e le scritte.
 
 ### COME SI GIOCA

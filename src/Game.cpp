@@ -110,6 +110,9 @@ void Game::prepare() {
         asteroids[0].setPosition(data[0], data[1]);
         asteroids[1].setPosition(data[2], data[3]);
         asteroids[2].setPosition(data[4], data[5]);
+        // client receiver
+        pthread_cancel(th);
+        pthread_create(&th, NULL, NetworkManager::receiver, players[0].getData());
     } else if (host == 's') {
         int data[6];
         asteroids[0].setDial(1, players);
@@ -122,34 +125,45 @@ void Game::prepare() {
         data[4] = asteroids[2].getX();
         data[5] = asteroids[2].getY();
         NetworkManager::sendData(NetworkManager::client_addr, data, 6);
+        // server receiver
+        pthread_cancel(th);
+        pthread_create(&th, NULL, NetworkManager::receiver, players[1].getData());
     }
 }
 
 void Game::transfer() {
     SDL_Event event;
     if (host == 'c') {
-        NetworkManager::sendData(NetworkManager::server_addr, players[1].getData(), 4);
-        players[1].getData()[1] = 0; // reset
-        NetworkManager::receiveData(players[0].getData(), 4);
-        if (players[0].getData()[0] != -1) {
-            event = int_to_event(players[0].getData()[1]);
-            players[0].handleInput(event, players[0].getData()[2], players[0].getData()[3], renderer, soundMixer);
-            players[0].setAngle(players[0].getData()[3], players[0].getData()[2]);
-        } else {
-            running = false;
-            perror("Lost connection with the server");
+        if (NetworkManager::transferred) {
+            NetworkManager::sendData(NetworkManager::server_addr, players[1].getData(), 4);
+            players[1].getData()[1] = 0; // reset
+            //NetworkManager::receiveData(players[0].getData(), 4);
+            if (players[0].getData()[0] != -1) {
+                event = int_to_event(players[0].getData()[1]);
+                players[0].handleInput(event, players[0].getData()[2], players[0].getData()[3], renderer, soundMixer);
+                players[0].setAngle(players[0].getData()[3], players[0].getData()[2]);
+            } else {
+                running = false;
+                perror("Lost connection with the server");
+            }
+            NetworkManager::transferred = false;
         }
     } else if (host == 's') {
-        NetworkManager::sendData(NetworkManager::client_addr, players[0].getData(), 4);
-        players[0].getData()[1] = 0; //reset
-        NetworkManager::receiveData(players[1].getData(), 4);
-        if (players[1].getData()[0] != -1) {
-            event = int_to_event(players[1].getData()[1]);
-            players[1].handleInput(event, players[1].getData()[2], players[1].getData()[3], renderer, soundMixer);
-            players[1].setAngle(players[1].getData()[3], players[1].getData()[2]);
-        } else {
-            reset();
+        NetworkManager::transferred = true;
+        if (NetworkManager::transferred) {
+            NetworkManager::sendData(NetworkManager::client_addr, players[0].getData(), 4);
+            players[0].getData()[1] = 0; //reset
+            //NetworkManager::receiveData(players[1].getData(), 4);
+            if (players[1].getData()[0] != -1) {
+                event = int_to_event(players[1].getData()[1]);
+                players[1].handleInput(event, players[1].getData()[2], players[1].getData()[3], renderer, soundMixer);
+                players[1].setAngle(players[1].getData()[3], players[1].getData()[2]);
+            } else {
+                reset();
+            }
+            NetworkManager::transferred = false;
         }
+
     }
 }
 
@@ -319,7 +333,6 @@ void Game::handleEvents() {
                         }
                         break;
                     case SDL_KEYDOWN:
-                        printf("ciao\n");
                         menu.updateEvent(event);
                         break;
                 }

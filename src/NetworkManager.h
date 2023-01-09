@@ -7,7 +7,7 @@ class NetworkManager {
 public:
     static int sockfd;
     static struct sockaddr_in server_addr, client_addr;
-    static bool ready;
+    static bool ready, transferred;
     static char server_ip_addr[15];
     // methods
     static void initServerSock();
@@ -20,6 +20,7 @@ public:
     static void sendData(struct sockaddr_in addr, int *data, int size);
     static void* serverReceiveWaiting(void *arg);
     static void* clientReceiveWaiting(void *arg);
+    static void* receiver(void *arg);
     static void close();
 };
 

@@ -102,7 +102,7 @@ void* NetworkManager::receiver(void *arg) {
     int *data = (int*) arg;
     while (true) {
         if (!transferred) {
-            NetworkManager::receiveData(data, 4);- .
+            NetworkManager::receiveData(data, 4);
             rl
             transferred = true;
         }

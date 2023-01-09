@@ -340,6 +340,7 @@ void Game::handleEvents() {
             case PLAY:
                 switch (event.type) {
                     case SDL_QUIT:
+                        // notify quit
                         if (host == 'c') {
                             players[1].setId(-1);
                             NetworkManager::sendData(NetworkManager::server_addr, players[1].getData(), 4);

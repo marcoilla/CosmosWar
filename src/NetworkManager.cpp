@@ -71,11 +71,6 @@ void NetworkManager::listenServer(int *data) {
 void NetworkManager::receiveData(int *data, int size) {
     struct sockaddr_in addr;
     socklen_t addr_size = sizeof(struct sockaddr);
-    printf("Data: ");
-    for (int i = 0; i < size; ++i) {
-        printf("%d ", data[i]);
-    }
-    printf("\n");
     if (recvfrom(sockfd, data, sizeof(int)*size, 0, (struct sockaddr*)&addr, &addr_size) < 0) {
         perror("recvfrom error");
     }
@@ -103,7 +98,6 @@ void* NetworkManager::receiver(void *arg) {
     while (true) {
         if (!transferred) {
             NetworkManager::receiveData(data, 4);
-            rl
             transferred = true;
         }
     }

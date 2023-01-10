@@ -34,7 +34,7 @@ Utilizzando le socket UDP bisogna gestire interamente lo scambio di pacchetti tr
 Il gioco presenta 4 fasi di scambio dei pacchetti: Viene instaurata la connessione tra server e client:
 - Il server rimane in attesa del ricevimento dell’id del client (tramite la primitiva recvfrom un thread, 
 in quanto la primitiva utilizzata è bloccante, rimane in attesa del ricevimento di un int contenente l’id del client), 
-poi ha sua volta invia (tramite la primitiva sendto) il proprio id al client (utilizzando l’IP e la porta da cui è arrivato l’id).
+poi a sua volta invia (tramite la primitiva sendto) il proprio id al client (utilizzando l’IP e la porta da cui è arrivato l’id).
 Il client dopo aver inviato il proprio id al server (utilizzando l’IP inserito e la porta fissa e prestabilita), rimane in attesa
 come il server dell’id di quest’ultimo. Quando entrambi gli host si saranno scambiati i propri id, conosceranno le informazioni e
 i requisiti per scambiarsi messaggi, quindi la connessione sarà stabilita. 

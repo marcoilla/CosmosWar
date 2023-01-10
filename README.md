@@ -9,7 +9,7 @@ Realizzare un videogioco di combattimento, utilizzando le socket per implementar
 Cosmos War è un videogioco di combattimento che utilizza le socket per implementare la funzionalità multigiocatore. 
 Cosmos War è ambientato nello spazio dove due giocatori assumono il comando delle rispettive navicelle spaziali in conflitto una contro l’altra. 
 Oltre ai proiettili vaganti sul campo di battaglia, saranno presenti degli asteroidi che possono risultare un vantaggio per proteggersi dai colpi avversari,
-ma anche uno svantaggio per quanto riguarda i movimenti.
+ma anche uno svantaggio per quanto riguarda i movimenti. 
 
 ### TECNOLOGIE UTILIZZATE
 Per realizzare il videogioco abbiamo utilizzato le seguenti tecnologie: 

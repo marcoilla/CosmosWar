@@ -72,7 +72,7 @@ private:
     // movement status
     int up, down, left, right;
     // data of players to send/recv
-    int data[4];
+    int data[6];
 };
 
 #endif //ARCADE_GAME_PLAYER_H

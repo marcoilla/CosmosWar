@@ -19,6 +19,8 @@ Player::Player() {
     data[1] = 0;
     data[2] = 0;
     data[3] = 0;
+    data[4] = 0;
+    data[5] = 0;
 }
 
 int Player::getId() {
@@ -50,6 +52,8 @@ void Player::setPosition(double x, double y) {
     x_pos = x;
     y_pos = y;
     Picture::setPosition(x - width_frame/2, y - height_frame/2);
+    data[2] = x_pos;
+    data[3] = y_pos;
 }
 
 void Player::setAngle(double angle) {
@@ -58,8 +62,8 @@ void Player::setAngle(double angle) {
 
 void Player::setAngle(int y, int x) {
     angle = (atan2(y - (getY() + getYCenter()), x - (getX() + getXCenter()))*57.2957) + 90; // arc-tan(y/x) + 90
-    data[2] = x;
-    data[3] = y;
+    data[4] = x;
+    data[5] = y;
 }
 
 double Player::getAngle() {
@@ -296,6 +300,8 @@ void Player::reset() {
     data[1] = 0;
     data[2] = 0;
     data[3] = 0;
+    data[4] = 0;
+    data[5] = 0;
     for (int i = 0; i < 5; ++i) {
         bullets[i].setMoving(false);
         bullets[i].destroy();

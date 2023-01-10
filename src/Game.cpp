@@ -135,13 +135,14 @@ void Game::transfer() {
     SDL_Event event;
     if (host == 'c') {
         if (NetworkManager::transferred) {
-            NetworkManager::sendData(NetworkManager::server_addr, players[1].getData(), 4);
+            NetworkManager::sendData(NetworkManager::server_addr, players[1].getData(), 6);
             players[1].getData()[1] = 0; // reset
             //NetworkManager::receiveData(players[0].getData(), 4);
             if (players[0].getData()[0] != -1) {
                 event = int_to_event(players[0].getData()[1]);
-                players[0].handleInput(event, players[0].getData()[2], players[0].getData()[3], renderer, soundMixer);
-                players[0].setAngle(players[0].getData()[3], players[0].getData()[2]);
+                players[0].handleInput(event, players[0].getData()[4], players[0].getData()[5], renderer, soundMixer);
+                players[0].setPosition(players[0].getData()[2], players[0].getData()[3]);
+                players[0].setAngle(players[0].getData()[5], players[0].getData()[4]);
             } else {
                 running = false;
                 perror("Lost connection with the server");
@@ -151,13 +152,14 @@ void Game::transfer() {
     } else if (host == 's') {
         NetworkManager::transferred = true;
         if (NetworkManager::transferred) {
-            NetworkManager::sendData(NetworkManager::client_addr, players[0].getData(), 4);
+            NetworkManager::sendData(NetworkManager::client_addr, players[0].getData(), 6);
             players[0].getData()[1] = 0; //reset
             //NetworkManager::receiveData(players[1].getData(), 4);
             if (players[1].getData()[0] != -1) {
                 event = int_to_event(players[1].getData()[1]);
-                players[1].handleInput(event, players[1].getData()[2], players[1].getData()[3], renderer, soundMixer);
-                players[1].setAngle(players[1].getData()[3], players[1].getData()[2]);
+                players[1].handleInput(event, players[1].getData()[4], players[1].getData()[5], renderer, soundMixer);
+                players[1].setPosition(players[1].getData()[2], players[1].getData()[3]);
+                players[1].setAngle(players[1].getData()[5], players[1].getData()[4]);
             } else {
                 reset();
             }

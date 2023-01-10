@@ -3,7 +3,7 @@
 ###### Illarietti Marco, Pietro Tarenzi - A.S. 2022/2023 I.I.S. Badoni 5BI
 
 ### SCOPO DEL PROGETTO
-Realizzare un videogioco di combattimento, utilizzando le socket per implementare la funzionalità multigiocatore.
+Realizzare un videogioco di combattimento, utilizzando le socket per implementare la funzionalità multigiocatore. 
 
 ### DESCRIZIONE DEL GIOCO
 Cosmos War è un videogioco di combattimento che utilizza le socket per implementare la funzionalità multigiocatore. 

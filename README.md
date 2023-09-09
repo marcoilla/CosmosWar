@@ -1,73 +1,79 @@
 <img src="resources/img/cosmos-war.png" alt="drawing" width="1000"/>
 
-###### Illarietti Marco, Pietro Tarenzi - A.S. 2022/2023 I.I.S. Badoni 5BI
+# Cosmos War - Videogioco di Combattimento Multigiocatore
 
-### SCOPO DEL PROGETTO
-Realizzare un videogioco di combattimento, utilizzando le socket per implementare la funzionalità multigiocatore. 
+![Cosmos War Banner](link_all'immagine_del_banner)
 
-### DESCRIZIONE DEL GIOCO
-Cosmos War è un videogioco di combattimento che utilizza le socket per implementare la funzionalità multigiocatore. 
-Cosmos War è ambientato nello spazio dove due giocatori assumono il comando delle rispettive navicelle spaziali in conflitto una contro l’altra. 
-Oltre ai proiettili vaganti sul campo di battaglia, saranno presenti degli asteroidi che possono risultare un vantaggio per proteggersi dai colpi avversari,
-ma anche uno svantaggio per quanto riguarda i movimenti. 
+**Autore:** Illarietti Marco, Pietro Tarenzi  
+**Anno Scolastico:** 2022/2023  
+**Istituto:** I.I.S. Badoni 5BI
 
-### TECNOLOGIE UTILIZZATE
-Per realizzare il videogioco abbiamo utilizzato le seguenti tecnologie: 
-- Linguaggio di programmazione C e C++ perché più adatti
-allo sviluppo di videogiochi e per avere più dimestichezza con le socket, utilizzate per implementare la modalità multiplayer. 
-- SDL2 [(Simple DirectMedia Layer)](https://www.libsdl.org/), ovvero una libreria multipiattaforma che permette l’accesso a basso livello all’audio,
-alle periferiche e all’hardware grafico tramite OpenGL. 
-- Socket UDP, implementandole utilizzato la libreria NetInet e la libreria Arpa.
-L’utilizzo di questo tipo di socket è motivato dal fatto che volevamo garantire la minima latenza possibile tra i due giocat ori durante il gioco.
-- [Pixel Art Maker](https://www.pixilart.com/), un sito online gratuito per realizzare Pixel Art che abbiamo usato per creare le immagini di gioco (navicella o asteroidi) e le scritte.
+## Descrizione del Gioco
 
-### COME SI GIOCA
-Dopo aver avviato il gioco, premere Il tasto PLAY che ti rimanderà ad una schermata dove bisognerà scegliere se hostare
-la partita o accedere ad essa. Una volta scelto in che modo accedere alla partita bisogna inserire l’indirizzo IP dell’host,
-ci si ritroverà in una schermata in cui si attenderà che la connessione tra server e client sia stabilita. Dopo aver seguito questi passi,
-ci si ritroverà sul campo di combattimento. Per muoversi occorrerà utilizzare W (per andare avanti), A (per andare a sinistra),
-D (per andare a destra) e S (per andare indietro). Per scegliere la direzione in cui verrà orientata la navicella bisogna spostare 
-il cursore all’interno della finestra. Per sparare bisogna mirare con il cursore a forma di mirino il nemico e fare fuoco con il tasto sinistro del mouse.
+**Cosmos War** è un emozionante videogioco di combattimento ambientato nello spazio, progettato per offrire un'esperienza multigiocatore coinvolgente. In questo gioco, due giocatori prendono il comando delle loro navicelle spaziali e si sfidano in un'epica battaglia nel vuoto cosmico. Oltre ai pericolosi proiettili che solcano lo spazio, gli asteroidi si frappongono come ostacoli e rifugi, creando una dinamica di gioco unica in cui la strategia e la destrezza sono fondamentali.
 
-### COME FUNZIONANO LE SOCKET
-Utilizzando le socket UDP bisogna gestire interamente lo scambio di pacchetti tra server e client. 
-Il gioco presenta 4 fasi di scambio dei pacchetti: Viene instaurata la connessione tra server e client:
-- Il server rimane in attesa del ricevimento dell’id del client (tramite la primitiva recvfrom un thread, 
-in quanto la primitiva utilizzata è bloccante, rimane in attesa del ricevimento di un int contenente l’id del client), 
-poi a sua volta invia (tramite la primitiva sendto) il proprio id al client (utilizzando l’IP e la porta da cui è arrivato l’id).
-Il client dopo aver inviato il proprio id al server (utilizzando l’IP inserito e la porta fissa e prestabilita), rimane in attesa
-come il server dell’id di quest’ultimo. Quando entrambi gli host si saranno scambiati i propri id, conosceranno le informazioni e
-i requisiti per scambiarsi messaggi, quindi la connessione sarà stabilita. 
-- Il server invia le informazioni preliminari al client per creare il campo di gioco. Il server invia la posizione dei 3 asteroidi, in un array di int di 6 elementi 
-([0] coordinata x del primo asteroide, [1] coordinata y del primo asteroide, [2] coordinata x del secondo asteroide,
-[3] coordinata y del secondo asteroide, [4] coordinata x del terzo asteroide, [5] coordinata y del terzo asteroide).
-Il client rimane in attesa come prima dell’arrivo delle coordinate dei 3 asteroidi, contenute in un array di int di 6 elementi
-dal quale verranno estratte le informazioni per poi impostare le posizioni dei vari asteroidi.
-- Server e client si scambiano le informazioni di gioco. Il server e il client mandano e poi ricevono le informazioni utili al funzionamento e al movimento durante il gioco.
-Le informazioni vengono scambiate tramite un array di int di 4 elementi ([0] id del giocatore, [1] l’evento scatenato dal giocatore,
-ovvero un intero che identifica il tasto della tastiera o del mouse premuto, [2] la coordinata x del mouse, [3] la coordinata y del mouse).
-Queste informazioni vengono poi processate per riprodurre l’azione dell’altro giocatore. Server e client chiudono la connessione.
-- Il server e il client al termine della partita o quando uno dei due chiude il gioco chiudono la comunicazione (tramite la primitiva close chiudono la rispettiva datagram socket).
+## Tecnologie Utilizzate
 
-### INSTALLAZIONE E REQUISITI
+Abbiamo sviluppato **Cosmos War** sfruttando una serie di tecnologie avanzate per garantire un'esperienza di gioco fluida e coinvolgente:
 
-Prima di poter giocare occorre seguire i seguenti passaggi (N.B. per via delle librerie utilizzate per la gestione delle socket e dei thread
-è possibile utilizzare il gioco solamente su distribuzioni basate su UNIX):
+- **Linguaggio di programmazione C e C++**: Questi linguaggi sono stati scelti per la loro idoneità allo sviluppo di videogiochi e per la loro compatibilità con l'implementazione di socket necessarie per la modalità multigiocatore.
 
-- Installare le librerie di SDL: 
-> MacOS, aprire il terminale e lanciare i seguenti comandi:
->> - ```she brew install SDL2```
-(libreria per gestire la grafica)
->> - ```brew install SDL2_image``` (libreria per gestire le immagini)
->> - ```brew install SDL2_ttf``` (libreria per gestire i font)
->> - ```brew install SDL2_mixer``` (libreria per gestire l’audio)
+- **SDL2 (Simple DirectMedia Layer)**: Abbiamo utilizzato SDL2, una libreria multipiattaforma, per gestire l'accesso a basso livello all'audio, alle periferiche e all'hardware grafico tramite OpenGL.
 
-> Linux, aprite il terminale e installare tramite il proprio packet manager le seguenti librerie:
->> - SDL2 SDL2_image 
->> - SDL2_ttf 
->> - SDL2_mixer 
+- **Socket UDP**: Abbiamo implementato le socket UDP utilizzando le librerie NetInet e Arpa. Questa scelta ci ha permesso di garantire una minima latenza tra i due giocatori durante il gioco.
 
-- Scaricare il progetto.
-- Aprire un terminale e entrare nella cartella src del progetto.
-- All’interno del terminale lanciare il comando ```make``` per compilare il codice e generare l’eseguibile. 
-- Dopo aver generato l’eseguibile lanciare il comando ```./game``` per eseguire il codice.
+- **Pixel Art Maker**: Abbiamo creato le immagini di gioco, inclusi i modelli delle navicelle spaziali e degli asteroidi, nonché le scritte, utilizzando Pixel Art Maker, un sito online gratuito specializzato in grafica pixel art.
+
+## Come Si Gioca
+
+Per iniziare a giocare a **Cosmos War**, segui questi semplici passaggi:
+
+1. Avvia il gioco e fai clic su "PLAY" per accedere alla schermata di selezione.
+
+2. Scegli se vuoi ospitare una partita o unirti a una partita esistente.
+
+3. Se stai ospitando una partita, inserisci l'indirizzo IP del tuo host. Altrimenti, attendi che l'host accetti la tua connessione.
+
+4. Una volta connessi, ti troverai sul campo di battaglia nello spazio. Usa i tasti W, A, S, e D per muoverti e il cursore del mouse per orientare la tua navicella. Premi il tasto sinistro del mouse per sparare ai nemici.
+
+## Funzionamento delle Socket
+
+Il gioco utilizza le socket UDP per gestire la comunicazione tra server e client. Ecco come funziona:
+
+1. **Connessione Iniziale**: Il server e il client si scambiano gli ID tramite le socket UDP per stabilire una connessione stabile.
+
+2. **Informazioni Preliminari**: Il server invia le coordinate degli asteroidi al client per creare il campo di gioco.
+
+3. **Scambio di Informazioni di Gioco**: Durante il gioco, server e client si scambiano informazioni tramite un array di int, consentendo ai giocatori di muoversi e sparare.
+
+4. **Chiusura della Connessione**: Alla fine della partita o quando un giocatore chiude il gioco, la comunicazione viene chiusa.
+
+## Installazione
+
+Prima di iniziare a giocare a **Cosmos War**, assicurati di seguire questi passaggi:
+
+1. Installa le librerie di SDL2 utilizzando i comandi appropriati per il tuo sistema operativo:
+
+   - **MacOS**:
+
+     ```shell
+     brew install SDL2 SDL2_image SDL2_ttf SDL2_mixer
+     ```
+
+   - **Linux**:
+
+     ```shell
+     sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev
+     ```
+
+2. Scarica il progetto da GitHub.
+
+3. Apri un terminale e naviga nella cartella "src" del progetto.
+
+4. Esegui il comando "make" per compilare il codice e generare l'eseguibile.
+
+5. Una volta generato l'eseguibile, avvia il gioco con il comando "./game".
+
+**Nota:** Il gioco è compatibile solo con distribuzioni basate su UNIX a causa delle librerie utilizzate per la gestione delle socket e dei thread.
+
+Divertiti a esplorare il Cosmo e a combattere le epiche battaglie spaziali in **Cosmos War**!

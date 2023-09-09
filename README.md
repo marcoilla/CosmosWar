@@ -2,8 +2,6 @@
 
 # Cosmos War - Videogioco di Combattimento Multigiocatore
 
-![Cosmos War Banner](link_all'immagine_del_banner)
-
 **Autore:** Illarietti Marco, Pietro Tarenzi  
 **Anno Scolastico:** 2022/2023  
 **Istituto:** I.I.S. Badoni 5BI
@@ -68,11 +66,27 @@ Prima di iniziare a giocare a **Cosmos War**, assicurati di seguire questi passa
 
 2. Scarica il progetto da GitHub.
 
-3. Apri un terminale e naviga nella cartella "src" del progetto.
+     ```shell
+     git clone https://github.com/marcoilla/CosmosWar.git
+     ```
 
-4. Esegui il comando "make" per compilare il codice e generare l'eseguibile.
+4. Apri un terminale e naviga nella cartella "src" del progetto.
 
-5. Una volta generato l'eseguibile, avvia il gioco con il comando "./game".
+     ```shell
+    cd CosmosWar && cd src
+     ```
+
+6. Compila il codice e genera l'eseguibile.
+
+     ```shell
+    make
+     ```
+
+8. Una volta generato l'eseguibile, avvia il gioco.
+
+    ```shell
+	./game
+     ```
 
 **Nota:** Il gioco è compatibile solo con distribuzioni basate su UNIX a causa delle librerie utilizzate per la gestione delle socket e dei thread.
 
